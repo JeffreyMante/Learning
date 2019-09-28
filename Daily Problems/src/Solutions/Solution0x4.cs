@@ -1,3 +1,5 @@
+using DailyCodingProblems.src.Infrastructure;
+
 namespace DailyCodingProblems.src.Solutions
 {
     /// <Description>

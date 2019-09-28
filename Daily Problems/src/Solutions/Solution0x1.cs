@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DailyCodingProblems.src.Infrastructure;
 
 namespace DailyCodingProblems.src.Solutions
 {

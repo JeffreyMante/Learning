@@ -1,4 +1,5 @@
 using System;
+using DailyCodingProblems.src.Infrastructure;
 
 namespace DailyCodingProblems.src.Solutions
 {
