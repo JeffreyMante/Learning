@@ -1,4 +1,5 @@
 ﻿using System;
+using Stack.src.Infrastructure;
 
 namespace Stack
 {
@@ -6,7 +7,7 @@ namespace Stack
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            StackTester.Run(new ArrayStack(), Console.WriteLine);
         }
     }
 }
