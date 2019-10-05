@@ -1,4 +1,5 @@
 using System;
+using Stack.src.Interfaces;
 
 namespace Stack.src.Infrastructure
 {

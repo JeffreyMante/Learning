@@ -1,4 +1,4 @@
-namespace Stack.src.Infrastructure
+namespace Stack.src.Interfaces
 {
     /// <summary>
     /// This represents the interface for a stack of objects.

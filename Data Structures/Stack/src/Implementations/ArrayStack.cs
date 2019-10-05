@@ -1,7 +1,8 @@
 using System;
 using System.Text;
+using Stack.src.Interfaces;
 
-namespace Stack.src.Infrastructure
+namespace Stack.src.Implementations
 {
     /// <summary>
     /// This class represents an array stack implementation.
