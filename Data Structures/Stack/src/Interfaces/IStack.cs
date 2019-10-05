@@ -13,12 +13,12 @@ namespace Stack.src.Interfaces
         //
         object Peek();
 
-        // Returns the object at the top of the stack and removes it.
-        //
-        object Pop();
-
         // Adds an object to the top of the stack.
         //
         void Push(object obj);
+
+        // Returns the object at the top of the stack and removes it.
+        //
+        object Pop();
     }
 }
