@@ -1,7 +1,7 @@
 using System;
-using DailyCodingProblems.src.Infrastructure;
+using DailyProblems.src.Infrastructure;
 
-namespace DailyCodingProblems.src.Solutions
+namespace DailyProblems.src.Solutions
 {
     /// <Description>
     /// cons(a, b) constructs a pair, and car(pair) and cdr(pair) returns 

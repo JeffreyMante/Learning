@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace DailyCodingProblems.src.Infrastructure
+namespace DailyProblems.src.Infrastructure
 {
     public abstract class SolutionBase
     {

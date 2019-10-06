@@ -1,6 +1,6 @@
-using DailyCodingProblems.src.Infrastructure;
+using DailyProblems.src.Infrastructure;
 
-namespace DailyCodingProblems.src.Solutions
+namespace DailyProblems.src.Solutions
 {
     /// <Description>
     /// Given an array of integers, find the first missing positive integer in linear time and 

@@ -1,5 +1,5 @@
-﻿using DailyCodingProblems.src.Infrastructure;
-using DailyCodingProblems.src.Solutions;
+﻿using DailyProblems.src.Infrastructure;
+using DailyProblems.src.Solutions;
 
 namespace DailyCodingProblems
 {
@@ -7,7 +7,7 @@ namespace DailyCodingProblems
     {
         static void Main(string[] args)
         {
-            Application.Run<Solution0x5>();
+            Application.Run<Solution0x6>();
         }
     }
 }

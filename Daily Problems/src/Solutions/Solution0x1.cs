@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using DailyCodingProblems.src.Infrastructure;
+using DailyProblems.src.Infrastructure;
 
-namespace DailyCodingProblems.src.Solutions
+namespace DailyProblems.src.Solutions
 {
     /// <Description>
     /// Given a list of numbers and a number k, return whether any two numbers from the list add up to k.

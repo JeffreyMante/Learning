@@ -1,4 +1,4 @@
-namespace DailyCodingProblems.src.Infrastructure
+namespace DailyProblems.src.Infrastructure
 {
     public sealed class Node
     {
