@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Collections.Generic;
 
 namespace DecimalToBinary
 {
@@ -21,13 +20,13 @@ namespace DecimalToBinary
                 var log = Math.Log(Math.Max(1, number), 2);
                 var exponent = (int)Math.Floor(log);
                 var length = Math.Max(1, exponent + 1);
-                var bitArray = new int[(int)length];
+                var bitArray = new bool[(int)length];
 
                 while (number > 0)
                 {
                     var index = (int)Math.Floor(Math.Log(Math.Max(1, number), 2));
                     var value = (int)Math.Pow(2, index);
-                    bitArray[index] = 1;
+                    bitArray[index] = true;
                     number -= value;
                 }
 
@@ -44,13 +43,13 @@ namespace DecimalToBinary
             }
         }
         
-        static string StringifyBinary(int[] bitArray)
+        static string StringifyBinary(bool[] bitArray)
         {
             string output = string.Empty;
 
             for (int i = bitArray.Length - 1; i >= 0; i--)
             {
-                output += bitArray[i].ToString();
+                output += bitArray[i] ? "1" : "0";
             }
 
             return output;
