@@ -1,0 +1,27 @@
+@page
+@model Tickets.IndexModel
+@{
+    ViewData["Title"] = "Tickets";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Tickets</h1>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Subject</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Tickets)
+            {
+                <tr>
+                    <td scope="row">@item.Subject</td>
+                    <td scope="row">@item.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
