@@ -46,7 +46,7 @@ namespace MostWater
                 }
             }
 
-            var height = lMax.Item1 > rMax.Item1 ? rMax.Item1 : lMax.Item1;
+            var height = Math.Min(lMax.Item1, rMax.Item1);
             var width = rMax.Item2 - lMax.Item2;
             return width * height;
         }
