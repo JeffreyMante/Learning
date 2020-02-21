@@ -1,6 +1,7 @@
 ﻿#region Using Statements
 
 using System;
+using System.Collections.Generic;
 
 #endregion
 
@@ -24,7 +25,27 @@ namespace ThreeSum
 
         static int[][] ThreeSum(int[] elements)
         {
-            return new int[][] { elements };
+            var results = new List<int[]>();
+            int a = 0, b = 0, c = 0;
+
+            for (int i = 0; i < elements.Length; i++)
+            {
+                a = elements[i];
+                for (int j = 0; j < elements.Length - 1; j++)
+                {
+                    if (j == i) continue;
+                    
+                    b = elements[j];
+                    c = elements[j + 1];
+
+                    if (a + b + c == 0)
+                    {
+                        results.Add(new int[] { a, b, c });
+                    }
+                }
+            }
+
+            return results.ToArray();
         }
 
         static void Print(int[][] results)
