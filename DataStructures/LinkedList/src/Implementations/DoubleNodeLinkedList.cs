@@ -1,13 +1,13 @@
+using LinkedList.src.Infrastructure;
+using LinkedList.src.Interfaces;
 using System;
 using System.Text;
-using LinkedList.src.Interfaces;
-using LinkedList.src.Infrastructure;
 
 namespace LinkedList.src.Implementations
 {
-    public sealed class NodeLinkedList : ILinkedList
+    public sealed class DoubleNodeLinkedList : ILinkedList
     {
-        private Node _head;
+        private DoubleNode _head;
         private int _count;
 
         public int Count => _count;
@@ -19,7 +19,7 @@ namespace LinkedList.src.Implementations
                 throw new ArgumentNullException("value");
             }
 
-            var node = new Node(value);
+            var node = new DoubleNode(value);
 
             if (_head == null)
             {
@@ -27,9 +27,10 @@ namespace LinkedList.src.Implementations
             }
             else
             {
-                var head = _head;
+                var iterator = _head;
+                node.Next = iterator;
+                iterator.Previous = node;
                 _head = node;
-                _head.Next = head;
             }
 
             _count++;
@@ -42,7 +43,7 @@ namespace LinkedList.src.Implementations
                 throw new ArgumentNullException("value");
             }
 
-            var node = new Node(value);
+            var node = new DoubleNode(value);
 
             if (_head == null)
             {
@@ -51,15 +52,16 @@ namespace LinkedList.src.Implementations
             else
             {
                 var iterator = _head;
-                
-                while(iterator.Next != null)
+
+                while (iterator.Next != null)
                 {
                     iterator = iterator.Next;
                 }
 
+                node.Previous = iterator;
                 iterator.Next = node;
             }
-            
+
             _count++;
         }
 
@@ -75,34 +77,29 @@ namespace LinkedList.src.Implementations
                 throw new IndexOutOfRangeException();
             }
 
-            var node = new Node(value);
+            var node = new DoubleNode(value);
+            var iterator = _head;
+            var localIndex = 0;
 
-            if (_head == null)
+            while (localIndex < index)
             {
+                iterator = iterator.Next;
+                localIndex++;
+            }
+
+            var prevNode = iterator.Previous;
+            if (prevNode == null)
+            {
+                node.Next = iterator;
+                iterator.Previous = node;
                 _head = node;
             }
             else
             {
-                var iterator = _head;
-                var localIndex = 0;
-                Node prevNode = null;
-
-                while(localIndex < index)
-                {
-                    prevNode = iterator;
-                    iterator = iterator.Next;
-                    localIndex++;
-                }
-
+                prevNode.Next = node;
+                node.Previous = prevNode;
                 node.Next = iterator;
-                if (prevNode == null)
-                {
-                    _head = node;
-                }
-                else
-                {
-                    prevNode.Next = node;
-                }
+                iterator.Previous = node;
             }
 
             _count++;
@@ -115,9 +112,10 @@ namespace LinkedList.src.Implementations
                 throw new Exception("List is empty");
             }
 
-            var prevNode = _head;
-            _head = _head.Next;
-            prevNode.Next = null;
+            var iterator = _head;
+            _head = iterator.Next;
+            _head.Previous = null;
+            iterator.Next = null;
             _count--;
         }
 
@@ -129,14 +127,13 @@ namespace LinkedList.src.Implementations
             }
 
             var iterator = _head;
-            Node prevNode = null;
 
-            while(iterator.Next != null)
+            while (iterator.Next != null)
             {
-                prevNode = iterator;
                 iterator = iterator.Next;
             }
 
+            var prevNode = iterator.Previous;
             if (prevNode == null)
             {
                 _head = null;
@@ -144,6 +141,7 @@ namespace LinkedList.src.Implementations
             else
             {
                 prevNode.Next = null;
+                iterator.Previous = null;
             }
 
             _count--;
@@ -162,7 +160,6 @@ namespace LinkedList.src.Implementations
             }
 
             var iterator = _head;
-            Node prevNode = null;
 
             while (iterator != null)
             {
@@ -171,7 +168,6 @@ namespace LinkedList.src.Implementations
                     break;
                 }
 
-                prevNode = iterator;
                 iterator = iterator.Next;
             }
 
@@ -180,18 +176,19 @@ namespace LinkedList.src.Implementations
                 return;
             }
 
+            var prevNode = iterator.Previous;
             if (prevNode == null)
             {
-                var prevHead = _head;
                 _head = iterator.Next;
-                prevHead.Next = null;
             }
             else
             {
                 prevNode.Next = iterator.Next;
-                iterator.Next = null;
+                iterator.Next.Previous = prevNode;
+                iterator.Previous = null;
             }
 
+            iterator.Next = null;
             _count--;
         }
 
@@ -209,15 +206,14 @@ namespace LinkedList.src.Implementations
 
             var iterator = _head;
             var localIndex = 0;
-            Node prevNode = null;
 
             while (localIndex < index)
             {
-                prevNode = iterator;
                 iterator = iterator.Next;
                 localIndex++;
             }
 
+            var prevNode = iterator.Previous;
             if (prevNode == null)
             {
                 _head = iterator.Next;
@@ -225,6 +221,8 @@ namespace LinkedList.src.Implementations
             else
             {
                 prevNode.Next = iterator.Next;
+                iterator.Next.Previous = prevNode;
+                iterator.Previous = null;
             }
 
             iterator.Next = null;

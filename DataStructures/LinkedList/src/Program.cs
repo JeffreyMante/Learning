@@ -8,7 +8,7 @@ namespace LinkedList
     {
         static void Main(string[] args)
         {
-            ILinkedList list = new NodeLinkedList();
+            ILinkedList list = new DoubleNodeLinkedList();
             Console.WriteLine(list.ToString());
 
             list.AddAtEnd(1);
