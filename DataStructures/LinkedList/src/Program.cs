@@ -11,11 +11,11 @@ namespace LinkedList
             ILinkedList list = new NodeLinkedList();
             Console.WriteLine(list.ToString());
 
-            list.Add(1);
-            list.Add(1);
-            list.Add(2);
-            list.Add(3);
-            list.Add(3);
+            list.AddAtEnd(1);
+            list.AddAtEnd(1);
+            list.AddAtEnd(2);
+            list.AddAtEnd(3);
+            list.AddAtEnd(3);
             Console.WriteLine(list.ToString());
 
             list.Remove(1);
@@ -24,10 +24,25 @@ namespace LinkedList
             list.Remove(3);
             Console.WriteLine(list.ToString());
 
-            list.Remove(1);
+            list.AddAtStart(4);
             Console.WriteLine(list.ToString());
 
-            list.Remove(2);
+            list.AddAtStart(5);
+            Console.WriteLine(list.ToString());
+
+            list.AddAtPosition(0, 6);
+            Console.WriteLine(list.ToString());
+
+            list.AddAtPosition(3, 7);
+            Console.WriteLine(list.ToString());
+
+            list.RemoveAtStart();
+            Console.WriteLine(list.ToString());
+
+            list.RemoveAtEnd();
+            Console.WriteLine(list.ToString());
+
+            list.RemoveAtPosition(2);
             Console.WriteLine(list.ToString());
         }
     }
