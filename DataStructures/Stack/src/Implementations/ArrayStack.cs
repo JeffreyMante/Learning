@@ -32,7 +32,7 @@ namespace Stack.src.Implementations
                 throw new Exception("Stack is empty");
             }
 
-            return _stackArray[_top--];;
+            return _stackArray[_top--];
         }
 
         public void Push(object obj)
