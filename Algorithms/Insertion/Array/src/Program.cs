@@ -36,9 +36,8 @@ namespace Array
         static int[] InsertSorted(int[] items, int index, int value)
         {
             var temp = new int[items.Length + 1];
-            var j = 0;
 
-            for(int i = 0; i < temp.Length; i++)
+            for(int i = 0, j = 0; i < temp.Length; i++)
             {
                 temp[i] = i == index ? value : items[j++];
             }
