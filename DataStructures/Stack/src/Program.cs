@@ -8,7 +8,8 @@ namespace Stack
     {
         static void Main(string[] args)
         {
-            StackTester.Run(new ArrayStack(), Console.WriteLine);
+            StackTester.RunReverseString("Hello my name is..", new ArrayStack(), Console.Write);
+            Console.WriteLine();
         }
     }
 }

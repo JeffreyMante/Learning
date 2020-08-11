@@ -28,5 +28,24 @@ namespace Stack.src.Infrastructure
             print($"Popping: {stack.Pop()}");
             print(stack.ToString());
         }
+
+        public static void RunReverseString(string value, IStack stack, Action<string> print)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            var charArray = value.ToCharArray();
+            foreach(var c in charArray)
+            {
+                stack.Push(c);
+            }
+
+            while (stack.Count > 0)
+            {
+                print(stack.Pop().ToString());
+            }
+        }
     }
 }
