@@ -6,17 +6,12 @@ namespace Queue.src.Implementations
 {
     public class ArrayQueue : IQueue
     {
-        private object[] _array;
+        private object[] _array = new object[0];
         private int _size = 0;
         private int _head = 0;
         private int _tail = 0;
 
-        public int Count { get; private set; }
-
-        public ArrayQueue()
-        {
-            _array = new object[_size];
-        }
+        public int Count => _tail - _head;
 
         public void Enqueue(object value)
         {
@@ -31,14 +26,9 @@ namespace Queue.src.Implementations
                 var temp = new object[_size];
                 _array.CopyTo(temp, 0);
                 _array = temp;
-                _array[_tail++] = value;
-            }
-            else
-            {
-                _array[_tail++] = value;
             }
 
-            Count++;
+            _array[_tail++] = value;
         }
 
         public object Dequeue()
@@ -55,7 +45,6 @@ namespace Queue.src.Implementations
                 _tail = 0;
             }
 
-            Count--;
             return value;
         }
 
