@@ -8,9 +8,9 @@ namespace Array.src.Implementations
     {
         private object[] _array = new object[0];
         private int _size = 0;
-        private int _index = 0;
+        private int _tail = 0;
 
-        public int Count => _index;
+        public int Count => _tail;
 
         public void Add(object value)
         {
@@ -19,7 +19,7 @@ namespace Array.src.Implementations
                 throw new ArgumentNullException("value");
             }
 
-            if (_index + 1 > _size)
+            if (_tail + 1 > _size)
             {
                 _size = Math.Max(1, _size * 2);
                 var temp = new object[_size];
@@ -27,7 +27,37 @@ namespace Array.src.Implementations
                 _array = temp;
             }
 
-          _array[_index++] = value;
+          _array[_tail++] = value;
+        }
+
+        public void AddAtPosition(object value, int index)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            if (index < 0 || index > _tail - 1)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            if (_tail + 1 > _size)
+            {
+                _size = Math.Max(1, _size * 2);
+                var temp = new object[_size];
+                _array.CopyTo(temp, 0);
+                _array = temp;
+            }
+
+            for (int i = _tail + 1; i > 0; i--)
+            {
+                _array[i] = i == index 
+                    ? value 
+                    : _array[Math.Max(i, i - 1)];
+            }
+
+            _tail++;
         }
 
         public void Remove(object value)
@@ -37,30 +67,41 @@ namespace Array.src.Implementations
                 throw new ArgumentNullException("value");
             }
 
-            if (Count == 0)
+            if (_tail == 0)
             {
                 throw new Exception("List is empty");
             }
 
-            for (int i = 0, j = 0; i < _index; i++)
+            for (int i = 0, j = 0; i < _tail; i++, j++)
             {
-                if (Equals(_array[i], value))
-                {
-                    if (_index == 1)
-                    {
-                        break;
-                    }
-
-                    j++;
-                }
-
-                if (j < _index)
-                {
-                    _array[i] = _array[j++];
-                }
+                _array[i] = Equals(_array[i], value)
+                    ? _array[Math.Min(++j, _tail - 1)]
+                    : _array[Math.Min(j, _tail - 1)];
             }
 
-            _index--;
+            _tail--;
+        }
+
+        public void RemoveAtPosition(int index)
+        {
+            if (index < 0 || index > _tail - 1)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            if (_tail == 0)
+            {
+                throw new Exception("List is empty");
+            }
+
+            for (int i = 0, j = 0; i < _tail; i++, j++)
+            {
+                _array[i] = i == index
+                    ? _array[Math.Min(++j, _tail - 1)]
+                    : _array[Math.Min(j, _tail - 1)];
+            }
+
+            _tail--;
         }
 
         public override string ToString()
