@@ -12,10 +12,22 @@ namespace Array
             IArray array = new StandardArray();
             Console.WriteLine(array.ToString());
 
-            array.Add(1);
+            array.AddAtPosition(1, 0);
             Console.WriteLine(array.ToString());
 
-            array.Remove(1);
+            array.AddAtPosition(2, 0);
+            Console.WriteLine(array.ToString());
+
+            array.AddAtPosition(3, 0);
+            Console.WriteLine(array.ToString());
+
+            array.AddAtPosition(4, 1);
+            Console.WriteLine(array.ToString());
+
+            array.AddAtPosition(5, 3);
+            Console.WriteLine(array.ToString());
+
+            /*array.Remove(1);
             Console.WriteLine(array.ToString());
 
             array.Add(1);
@@ -30,7 +42,7 @@ namespace Array
             Console.WriteLine(array.ToString());
 
             array.Remove(4);
-            Console.WriteLine(array.ToString());
+            Console.WriteLine(array.ToString());*/
         }
     }
 }

@@ -37,7 +37,7 @@ namespace Array.src.Implementations
                 throw new ArgumentNullException("value");
             }
 
-            if (index < 0 || index > _tail - 1)
+            if (index < 0 || index > _tail)
             {
                 throw new ArgumentOutOfRangeException();
             }
@@ -50,14 +50,16 @@ namespace Array.src.Implementations
                 _array = temp;
             }
 
-            for (int i = _tail + 1; i > 0; i--)
+            if (++_tail > 1)
             {
-                _array[i] = i == index 
-                    ? value 
-                    : _array[Math.Max(i, i - 1)];
+                for (int i = _tail - 1; i > 0; i--)
+                {
+                    _array[i] = _array[i - 1];
+                    if (i == index) break;
+                }
             }
 
-            _tail++;
+            _array[index] = value;
         }
 
         public void Remove(object value)
@@ -72,11 +74,19 @@ namespace Array.src.Implementations
                 throw new Exception("List is empty");
             }
 
-            for (int i = 0, j = 0; i < _tail; i++, j++)
+            if (_tail > 1)
             {
-                _array[i] = Equals(_array[i], value)
-                    ? _array[Math.Min(++j, _tail - 1)]
-                    : _array[Math.Min(j, _tail - 1)];
+                var found = false;
+
+                for (int i = 0, j = 0; i < _tail - 1; i++, j++)
+                {
+                    if (Equals(_array[i], value) && !found)
+                    {
+                        found = true;
+                    }
+
+                    _array[i] = found ? _array[++j] : _array[j];
+                }
             }
 
             _tail--;
@@ -94,11 +104,14 @@ namespace Array.src.Implementations
                 throw new Exception("List is empty");
             }
 
-            for (int i = 0, j = 0; i < _tail; i++, j++)
+            if (_tail > 1)
             {
-                _array[i] = i == index
-                    ? _array[Math.Min(++j, _tail - 1)]
-                    : _array[Math.Min(j, _tail - 1)];
+                for (int i = 0, j = 0; i < _tail - 1; i++, j++)
+                {
+                    _array[i] = i == index
+                        ? _array[++j]
+                        : _array[j];
+                }
             }
 
             _tail--;
