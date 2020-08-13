@@ -74,22 +74,22 @@ namespace Array.src.Implementations
                 throw new Exception("List is empty");
             }
 
-            if (_tail > 1)
+            var found = false;
+
+            for (int i = 0, j = 0; i < _tail - 1; i++, j++)
             {
-                var found = false;
-
-                for (int i = 0, j = 0; i < _tail - 1; i++, j++)
+                if (Equals(_array[i], value) && !found)
                 {
-                    if (Equals(_array[i], value) && !found)
-                    {
-                        found = true;
-                    }
-
-                    _array[i] = found ? _array[++j] : _array[j];
+                    found = true;
                 }
+
+                _array[i] = found ? _array[++j] : _array[j];
             }
 
-            _tail--;
+            if (found)
+            {
+                _tail--;
+            }
         }
 
         public void RemoveAtPosition(int index)
@@ -104,14 +104,11 @@ namespace Array.src.Implementations
                 throw new Exception("List is empty");
             }
 
-            if (_tail > 1)
+            for (int i = 0, j = 0; i < _tail - 1; i++, j++)
             {
-                for (int i = 0, j = 0; i < _tail - 1; i++, j++)
-                {
-                    _array[i] = i == index
-                        ? _array[++j]
-                        : _array[j];
-                }
+                _array[i] = i == index
+                    ? _array[++j]
+                    : _array[j];
             }
 
             _tail--;
