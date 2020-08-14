@@ -8,7 +8,7 @@ namespace Array
     {
         static void Main(string[] args)
         {
-            IArray array = new StandardArray();
+            IArray array = new NodeArray();
             Console.WriteLine(array.ToString());
 
             array.AddAtPosition(1, 0);
