@@ -8,9 +8,8 @@ namespace Array.src.Implementations
     {
         private object[] _array = new object[0];
         private int _size = 0;
-        private int _tail = 0;
 
-        public int Count => _tail;
+        public int Count { get; private set; }
 
         public void Add(object value)
         {
@@ -19,7 +18,7 @@ namespace Array.src.Implementations
                 throw new ArgumentNullException("value");
             }
 
-            if (_tail + 1 > _size)
+            if (Count + 1 > _size)
             {
                 _size = Math.Max(1, _size * 2);
                 var temp = new object[_size];
@@ -27,7 +26,7 @@ namespace Array.src.Implementations
                 _array = temp;
             }
 
-          _array[_tail++] = value;
+          _array[Count++] = value;
         }
 
         public void AddAtPosition(object value, int index)
@@ -37,12 +36,12 @@ namespace Array.src.Implementations
                 throw new ArgumentNullException("value");
             }
 
-            if (index < 0 || index > _tail)
+            if (index < 0 || index > Count)
             {
                 throw new ArgumentOutOfRangeException();
             }
 
-            if (_tail + 1 > _size)
+            if (Count + 1 > _size)
             {
                 _size = Math.Max(1, _size * 2);
                 var temp = new object[_size];
@@ -50,9 +49,9 @@ namespace Array.src.Implementations
                 _array = temp;
             }
 
-            if (++_tail > 1)
+            if (++Count > 1 && index <= Count - 1)
             {
-                for (int i = _tail - 1; i > 0; i--)
+                for (int i = Count - 1; i > 0; i--)
                 {
                     _array[i] = _array[i - 1];
                     if (i == index) break;
@@ -69,49 +68,50 @@ namespace Array.src.Implementations
                 throw new ArgumentNullException("value");
             }
 
-            if (_tail == 0)
+            if (Count == 0)
             {
                 throw new Exception("List is empty");
             }
 
             var found = false;
 
-            for (int i = 0, j = 0; i < _tail - 1; i++, j++)
+            for (int i = 0, j = 0; i < Count - 1; i++, j++)
             {
                 if (Equals(_array[i], value) && !found)
                 {
+                    j++;
                     found = true;
                 }
 
-                _array[i] = found ? _array[++j] : _array[j];
+                _array[i] = _array[j];
             }
 
             if (found)
             {
-                _tail--;
+                Count--;
             }
         }
 
         public void RemoveAtPosition(int index)
         {
-            if (index < 0 || index > _tail - 1)
+            if (index < 0 || index > Count - 1)
             {
                 throw new ArgumentOutOfRangeException();
             }
 
-            if (_tail == 0)
+            if (Count == 0)
             {
                 throw new Exception("List is empty");
             }
 
-            for (int i = 0, j = 0; i < _tail - 1; i++, j++)
+            for (int i = 0, j = 0; i < Count - 1; i++, j++)
             {
                 _array[i] = i == index
                     ? _array[++j]
                     : _array[j];
             }
 
-            _tail--;
+            Count--;
         }
 
         public override string ToString()
