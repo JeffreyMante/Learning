@@ -48,6 +48,8 @@ namespace Tree.src.Implementations
                     _queue.Dequeue();
                 }
             }
+
+            Count++;
         }
 
         public override string ToString()

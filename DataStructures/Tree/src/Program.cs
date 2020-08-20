@@ -8,19 +8,20 @@ namespace Tree
     {
         static void Main(string[] args)
         {
-            ITree tree = new BinaryTree();
+            ITree tree = new BinarySearchTree();
             Console.WriteLine(tree.ToString());
 
             tree.Add(0);
             Console.WriteLine(tree.ToString());
 
             tree.Add(1);
-            tree.Add(2);
+            Console.WriteLine(tree.ToString());
+            /*tree.Add(2);
             tree.Add(3);
             tree.Add(4);
             tree.Add(5);
             tree.Add(6);
-            Console.WriteLine(tree.ToString());
+            Console.WriteLine(tree.ToString());*/
         }
     }
 }
