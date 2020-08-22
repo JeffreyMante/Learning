@@ -16,7 +16,7 @@ namespace Selection
         {
             for (int i = 0, idx = 0; i < array.Length; i++)
             {
-                for (int j = i, min = int.MaxValue; j < array.Length; j++)
+                for (int j = i, min = array[i]; j < array.Length; j++)
                 {
                     if (array[j] <= min)
                     {
