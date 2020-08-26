@@ -37,28 +37,27 @@ namespace Quick
             Console.WriteLine();
         }
 
-        static void Partition(int rangeStart, int rangeEnd, ref int[] array)
+        static void Partition(int indexStart, int indexEnd, ref int[] array)
         {
-            if (rangeEnd - rangeStart > 1)
+            if ((indexEnd - indexStart) + 1 < 2)
             {
                 return;
             }
 
-            var key = array[new Random().Next(rangeStart, rangeEnd)];
-            int i = 0, l = 0, r = rangeEnd;
+            var key = array[new Random().Next(indexStart, indexEnd)];
+            int i = indexStart, l = indexStart, r = indexEnd;
 
-            while (l < r && i < r)
+            while (i <= r)
             {
                 if (array[i] < key)
                 {
-                    Swap(i, l, ref array);
-                    l++;
-                    i++;
+                    Swap(i, l++, ref array);
+                    i = l;
                 }
                 else if (array[i] > key)
                 {
-                    Swap(i, r, ref array);
-                    r--;
+                    Swap(i, r--, ref array);
+                    i = l;
                 }
                 else
                 {
@@ -66,8 +65,8 @@ namespace Quick
                 }
             }
 
-            Partition(0, l, ref array);
-            Partition(r, rangeEnd, ref array);
+            Partition(0, l - 1, ref array);
+            Partition(r + 1, indexEnd, ref array);
         }
 
         static void Swap(int index1, int index2, ref int[] array)

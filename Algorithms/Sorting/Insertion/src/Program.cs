@@ -40,14 +40,13 @@ namespace Insertion
             Console.WriteLine();
         }
 
-        static void Insert(int rangeStart, int rangeEnd, int value, ref int[] array)
+        static void Insert(int indexStart, int indexEnd, int value, ref int[] array)
         {
-            var index = rangeEnd;
+            var index = indexEnd;
 
-            for (int i = rangeEnd; i > rangeStart && array[i - 1] > value; i--)
+            while (index > indexStart && array[index - 1] > value)
             {
-                array[i] = array[i - 1];
-                index--;
+                array[index] = array[index-- - 1];
             }
 
             array[index] = value;
