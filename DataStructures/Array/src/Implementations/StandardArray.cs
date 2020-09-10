@@ -114,6 +114,22 @@ namespace Array.src.Implementations
             Count--;
         }
 
+        public void Reverse()
+        {
+            for (int i = 0, j = Count - 1; i < j - i; i++)
+            {
+                var val1 = _array[i];
+                var val2 = _array[j - i];
+                _array[i] = val2;
+                _array[j - i] = val1;
+            }
+        }
+
+        public void Clear()
+        {
+            Count = 0;
+        }
+
         public override string ToString()
         {
             var stringBuilder = new StringBuilder();

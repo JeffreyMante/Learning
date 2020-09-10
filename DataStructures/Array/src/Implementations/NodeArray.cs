@@ -156,6 +156,27 @@ namespace Array.src.Implementations
             Count--;
         }
 
+        public void Reverse()
+        {
+            Node iterator = _head;
+            Node prevNode = null;
+
+            while (iterator != null)
+            {
+                var next = iterator.Next;
+                iterator.Next = prevNode;
+                prevNode = iterator;
+                iterator = next;
+            }
+
+            _head = prevNode;
+        }
+
+        public void Clear()
+        {
+            _head = null;
+        }
+
         public override string ToString()
         {
             var stringBuilder = new StringBuilder();

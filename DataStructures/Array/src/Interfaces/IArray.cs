@@ -21,5 +21,11 @@ namespace Array.src.Interfaces
         // Removes an item at a specific position.
         //
         void RemoveAtPosition(int index);
+
+        // Reverses the items in the array.
+        void Reverse();
+
+        // Clears the items from the array.
+        void Clear();
     }
 }
